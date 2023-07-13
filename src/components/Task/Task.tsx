@@ -39,14 +39,14 @@ export const Task: React.FC<Props> = ({ id, title, isCompleted, isUpdating }: Pr
 
     return (
         <div ref={root} onClick={() => toggleTaskCompletion(id)} className={styles.root}>
-            <span className={isCompleted ? styles.title : null}>
+            <span className={isCompleted ? styles.completeTitle : null}>
                 {title}
             </span>
             <div className={styles.controls}>
-                <input
-                    className={styles.btn}
-                    type='checkbox'
-                    checked={isCompleted} />
+                <label className={styles.checkbox}>
+                    <input onChange={() => toggleTaskCompletion(id)} checked={isCompleted} type="checkbox" />
+                    <span className={styles.checkmark}></span>
+                </label>
                 <AiFillEdit
                     className={styles.btn}
                     size={24}
