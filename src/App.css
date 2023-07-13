@@ -10,6 +10,7 @@
   font-size: 20px;
   color: var(--black);
   padding: 0 20px;
+  scroll-behavior: smooth;
 }
 
 .app h1 {
