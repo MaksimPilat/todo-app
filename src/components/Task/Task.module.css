@@ -1,0 +1,40 @@
+.root {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    font-size: 1em;
+    line-height: 1;
+    font-weight: 500;
+    cursor: pointer;
+    transition: .3s ease-out;
+    box-shadow: none;
+    transform: translateX(7px);
+    border: 1px solid var(--yellow);
+}
+
+.title {
+    text-decoration: line-through;
+}
+
+.controls {
+    display: flex;
+    gap: 14px;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+.root input {
+    height: 24px;
+    width: 24px;
+}
+
+.offset {
+    box-shadow: 0px 1px 7px 1px rgba(34, 60, 80, 0.25);
+    transform: translateX(0px);
+    border: none;
+}

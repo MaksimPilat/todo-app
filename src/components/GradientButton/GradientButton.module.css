@@ -1,0 +1,41 @@
+.root {
+    min-width: 120px;
+    padding: 15px 0px;
+    border: none;
+    color: #FFF;
+    font-size: 16px;
+    font-weight: 600;
+    background: linear-gradient(90deg, var(--blue) 0%, var(--blue) 35%, var(--dark-blue) 100%);
+    border-radius: 0px 5px 5px 0px;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+}
+
+.root:active {
+    color: #ffffffaa;
+}
+
+.root:hover::after {
+    opacity: 1;
+    transition: .3s;
+}
+
+.root::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, var(--dark-blue) 0%, var(--blue) 35%, var(--blue) 100%);
+    opacity: 0;
+    transition: .3s;
+}
+
+.root span {
+    position: relative;
+    z-index: 1;
+    white-space: nowrap;
+}

@@ -1,0 +1,14 @@
+.root {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.root input {
+    width: 100%;
+    font-size: 20px;
+    padding: 0px 10px;
+    border: 2px solid var(--blue);
+    outline: none;
+    border-radius: 5px 0px 0px 5px;
+}

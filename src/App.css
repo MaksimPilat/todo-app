@@ -1,0 +1,59 @@
+:root {
+  --black: #1d1d1d;
+  --blue: #0075FF;
+  --red: #be2222;
+  --yellow: #c9b324;
+  --dark-blue: #264edc;
+}
+
+.app {
+  font-size: 20px;
+  color: var(--black);
+  padding: 0 20px;
+}
+
+.app h1 {
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1;
+  background: var(--blue);
+  background: linear-gradient(to right, var(--blue) 0%, var(--red) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.wrapper {
+  max-width: 700px;
+  margin: 100px auto;
+  padding: 60px 60px 70px 60px;
+  border-radius: 10px;
+  box-shadow: 0px 1px 7px 1px rgba(34, 60, 80, 0.25);
+}
+
+.formsContainer {
+  margin-top: 40px;
+}
+
+.tasksContainer {
+  margin-top: 30px;
+}
+
+.warn {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #8e8e8e
+}
+
+@media screen and (max-width: 550px) {
+  .app {
+    padding: 0;
+    font-size: 18px;
+  }
+
+  .wrapper {
+    padding: 60px 20px 70px 20px;
+  }
+}
