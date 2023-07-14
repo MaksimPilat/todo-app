@@ -7,8 +7,7 @@ export interface TaskListState {
 export enum TaskListActionTypes {
     ADD_TASK = "ADD_TASK",
     REMOVE_TASK = "REMOVE_TASK",
-    UPDATE_TASK = "UPDATE_TASK",
-    TOGGLE_TASK_UPDATING = "TOGGLE_TASK_UPDATING"
+    UPDATE_TASK = "UPDATE_TASK"
 }
 
 interface AddTaskAction {
@@ -23,12 +22,14 @@ interface RemoveTaskAction {
 
 interface UpdateTaskAction {
     type: TaskListActionTypes.UPDATE_TASK,
-    payload: { id: number, title: string }
+    payload: {
+        id: number,
+        title?: string,
+        isCompleted?: boolean,
+        isEditing?: boolean
+    }
 }
 
-interface ToggleTaskUpdatingAction {
-    type: TaskListActionTypes.TOGGLE_TASK_UPDATING,
-    payload: number
-}
-
-export type TaskListAction = AddTaskAction | RemoveTaskAction | UpdateTaskAction | ToggleTaskUpdatingAction;
+export type TaskListAction = AddTaskAction
+    | RemoveTaskAction
+    | UpdateTaskAction

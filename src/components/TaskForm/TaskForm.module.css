@@ -7,8 +7,12 @@
 .root input {
     width: 100%;
     font-size: 20px;
-    padding: 0px 10px;
-    border: 2px solid var(--blue);
+    padding: 0px 15px;
+    border: none;
     outline: none;
     border-radius: 5px 0px 0px 5px;
+}
+
+.root input::placeholder {
+    color: var(--light-grey);
 }

@@ -16,32 +16,28 @@ export const taskListReducer = ((state = initialState, action: TaskListAction): 
             return { ...state, tasks: state.tasks.filter(task => task.id !== action.payload) }
 
         case TaskListActionTypes.UPDATE_TASK:
+
             return {
                 ...state, tasks: state.tasks.map(task => {
-                    if (task.id === action.payload.id && action.payload.title !== '') {
-                        if (action.payload.title) {
-                            return { ...task, title: action.payload.title }
-                        }
-                        return { ...task, isCompleted: !task.isCompleted }
-                    }
-                    return task;
+                    if (task.id === action.payload.id) {
+                        const { title, isCompleted, isEditing } = action.payload;
+                        const newTitle = title || task.title;
+                        const newIsCompleted = isCompleted !== undefined ? isCompleted : task.isCompleted;
+                        const newIsEditing = isEditing !== undefined ? isEditing : task.isEditing;
+                        return { ...task, title: newTitle, isCompleted: newIsCompleted, isEditing: newIsEditing }
+                    } return { ...task, isEditing: false };
                 })
-            }
-
-        case TaskListActionTypes.TOGGLE_TASK_UPDATING:
-            return {
-                ...state, tasks: state.tasks.map(task =>
-                    task.id === action.payload ? { ...task, isUpdating: !task.isUpdating } : { ...task, isUpdating: false })
             }
 
         default: return state;
     }
 });
 
-export const addTaskAction = (payload: TaskState) => ({ type: TaskListActionTypes.ADD_TASK, payload });
+export const addTaskAction = (payload: TaskState) =>
+    ({ type: TaskListActionTypes.ADD_TASK, payload });
 
-export const removeTaskAction = (payload: number) => ({ type: TaskListActionTypes.REMOVE_TASK, payload });
+export const removeTaskAction = (payload: number) =>
+    ({ type: TaskListActionTypes.REMOVE_TASK, payload });
 
-export const updateTaskAction = (payload: { id: number, title?: string }) => ({ type: TaskListActionTypes.UPDATE_TASK, payload });
-
-export const toggleTaskUpdatingAction = (payload: number) => ({ type: TaskListActionTypes.TOGGLE_TASK_UPDATING, payload });
+export const updateTaskAction = (payload: { id: number, title?: string, isCompleted?: boolean, isEditing?: boolean }) =>
+    ({ type: TaskListActionTypes.UPDATE_TASK, payload });

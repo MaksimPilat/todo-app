@@ -14,7 +14,7 @@
 }
 
 .root:active {
-    color: #ffffffaa;
+    color: var(--light-grey);
 }
 
 .root:hover::after {

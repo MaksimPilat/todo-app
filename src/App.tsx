@@ -1,8 +1,8 @@
 import { useDispatch } from 'react-redux';
 import './App.css';
-import { Task, TaskForm } from './components/exports';
+import { Task, TaskForm } from './components';
 import { useTypedSelector } from './hooks/useTypedSelector';
-import { addTaskAction, toggleTaskUpdatingAction, updateTaskAction } from './store/reducers/taskListReducer';
+import { addTaskAction, updateTaskAction } from './store/reducers/taskListReducer';
 import { updateTaskEditorAction } from './store/reducers/taskEditorReducer';
 import { useEffect } from 'react';
 
@@ -18,7 +18,7 @@ const App: React.FC = () => {
       id: Date.now(),
       title: title,
       isCompleted: false,
-      isUpdating: false
+      isEditing: false
     }
     dispatch(addTaskAction(task));
   }
@@ -32,11 +32,13 @@ const App: React.FC = () => {
   }
 
   useEffect(() => {
-    if (tasks.length < 1) dispatch(updateTaskEditorAction());
+    if (tasks.length < 1 || !tasks.find(task => task.id === taskEditor.id)) {
+      dispatch(updateTaskEditorAction());
+    }
   }, [tasks]);
 
   useEffect(() => {
-    dispatch(toggleTaskUpdatingAction(taskEditor.id));
+    dispatch(updateTaskAction({ id: taskEditor.id, isEditing: true }));
   }, [taskEditor.id]);
 
   const renderTasks = () => {
@@ -49,12 +51,12 @@ const App: React.FC = () => {
               id={item.id}
               title={item.title}
               isCompleted={item.isCompleted}
-              isUpdating={item.isUpdating} />
+              isEditing={item.isEditing} />
           )}
         </div>
       )
     }
-    return <div className="warn">Task list is empty</div>
+    return <div className="message">Now your only job is to relax! &#128516;</div>
   }
 
   return (

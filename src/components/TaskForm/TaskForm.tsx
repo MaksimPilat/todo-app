@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import styles from './TaskForm.module.css';
 import { useEffect, useRef } from 'react';
 import { updateTaskEditorAction } from '../../store/reducers/taskEditorReducer';
-import { GradientButton } from '../exports';
+import { GradientButton } from '..';
 
 interface Props {
     placeHolder: string,
@@ -26,6 +26,7 @@ export const TaskForm: React.FC<Props> = ({ placeHolder, btnText, func, value }:
 
     useEffect(() => {
         if (value) inputRef.current.value = value;
+        inputRef.current.focus();
     }, [value]);
 
     return (
@@ -33,6 +34,8 @@ export const TaskForm: React.FC<Props> = ({ placeHolder, btnText, func, value }:
             className={styles.root}
             onSubmit={event => onHandleSubmit(event)} >
             <input
+                onFocus={() => inputRef.current.placeholder = ''}
+                onBlur={() => inputRef.current.placeholder = placeHolder}
                 ref={inputRef}
                 type='text'
                 placeholder={placeHolder} />

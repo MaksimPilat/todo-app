@@ -10,17 +10,19 @@ interface Props {
     id: number
     title: string,
     isCompleted: boolean,
-    isUpdating: boolean
+    isEditing: boolean
 }
 
-export const Task: React.FC<Props> = ({ id, title, isCompleted, isUpdating }: Props) => {
+export const Task: React.FC<Props> = ({ id, title, isCompleted, isEditing }: Props) => {
 
     const root = useRef<HTMLDivElement>(null!);
 
     const dispatch = useDispatch();
 
-    const toggleTaskCompletion = (id: number) => {
-        dispatch(updateTaskAction({ id: id }));
+    const changeTaskCompletion = (event: React.MouseEvent | React.FormEvent, id: number) => {
+        event.stopPropagation();
+        dispatch(updateTaskAction({ id: id, isCompleted: !isCompleted }));
+        console.log(isCompleted)
     }
 
     const editTask = (event: React.MouseEvent, id: number) => {
@@ -33,20 +35,21 @@ export const Task: React.FC<Props> = ({ id, title, isCompleted, isUpdating }: Pr
     }
 
     useEffect(() => {
-        root.current.classList.toggle(styles.offset);
-    }, [isUpdating])
-
+        root.current.classList.toggle(styles.editTask);
+    }, [isEditing])
 
     return (
-        <div ref={root} onClick={() => toggleTaskCompletion(id)} className={styles.root}>
+        <div ref={root} onClick={event => { console.log('click'); changeTaskCompletion(event, id) }} className={styles.root}>
             <span className={isCompleted ? styles.completeTitle : null}>
                 {title}
             </span>
             <div className={styles.controls}>
-                <label className={styles.checkbox}>
-                    <input onChange={() => toggleTaskCompletion(id)} checked={isCompleted} type="checkbox" />
-                    <span className={styles.checkmark}></span>
-                </label>
+                <div className={styles.checkboxWrapper}>
+                    <label className={styles.checkbox}>
+                        <input checked={isCompleted} type="checkbox" readOnly />
+                        <span className={styles.checkmark}></span>
+                    </label>
+                </div>
                 <AiFillEdit
                     className={styles.btn}
                     size={24}
