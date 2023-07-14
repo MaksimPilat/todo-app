@@ -3,6 +3,7 @@ import styles from './TaskForm.module.css';
 import { useEffect, useRef } from 'react';
 import { updateTaskEditorAction } from '../../store/reducers/taskEditorReducer';
 import { GradientButton } from '..';
+import { updateTaskAction } from '../../store/reducers/taskListReducer';
 
 interface Props {
     placeHolder: string,
@@ -21,7 +22,9 @@ export const TaskForm: React.FC<Props> = ({ placeHolder, btnText, func, task }: 
         event.preventDefault();
         func(inputRef.current.value);
         inputRef.current.value = '';
-        if (task) dispatch(updateTaskEditorAction(task.id));
+        if (task) {
+            dispatch(updateTaskEditorAction(task.id));
+        }
     }
 
     useEffect(() => {
