@@ -1,9 +1,8 @@
-import { useDispatch } from 'react-redux';
 import './App.css';
-import { Task, TaskForm } from './components';
+import { TaskForm, TaskList } from './components';
+import { useDispatch } from 'react-redux';
 import { useTypedSelector } from './hooks/useTypedSelector';
 import { addTaskAction, updateTaskAction } from './store/reducers/taskListReducer';
-import { updateTaskEditorAction } from './store/reducers/taskEditorReducer';
 import { useEffect, useState } from 'react';
 
 const App: React.FC = () => {
@@ -37,30 +36,6 @@ const App: React.FC = () => {
     setVisibility(true);
   }, []);
 
-  useEffect(() => {
-    if (tasks.length < 1 || !tasks.find(task => task.id === taskEditor.id)) {
-      dispatch(updateTaskEditorAction());
-    }
-  }, [tasks]);
-
-  const renderTasks = () => {
-    if (tasks.length > 0) {
-      return (
-        <div className="tasksContainer">
-          {tasks.map(item =>
-            <Task
-              key={item.id}
-              id={item.id}
-              title={item.title}
-              isCompleted={item.isCompleted}
-              isEditing={item.isEditing} />
-          )}
-        </div>
-      )
-    }
-    return <div className="message">Now your only job is to relax! &#128516;</div>
-  }
-
   return (
     <div className={`app ${visibility ? 'app-show' : null}`}>
       <div className="wrapper">
@@ -77,12 +52,15 @@ const App: React.FC = () => {
               placeHolder='Edit task'
               btnText='Update'
               func={editTask}
-              task={{ id: taskEditor.id, title: tasks.find(task => task.id === taskEditor.id)?.title }}
+              task={{
+                id: taskEditor.id,
+                title: tasks.find(task => task.id === taskEditor.id)?.title
+              }}
             /> : null
           }
         </div>
 
-        {renderTasks()}
+        <TaskList editableTaskId={taskEditor.id} />
       </div>
     </div>
   )

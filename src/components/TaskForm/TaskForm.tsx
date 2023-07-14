@@ -1,9 +1,9 @@
-import { useDispatch } from 'react-redux';
 import styles from './TaskForm.module.css';
-import { useEffect, useRef } from 'react';
-import { updateTaskEditorAction } from '../../store/reducers/taskEditorReducer';
 import { GradientButton } from '..';
+import { useDispatch } from 'react-redux';
+import { updateTaskEditorAction } from '../../store/reducers/taskEditorReducer';
 import { updateTaskAction } from '../../store/reducers/taskListReducer';
+import { useEffect, useRef } from 'react';
 
 interface Props {
     placeHolder: string,
@@ -15,7 +15,6 @@ interface Props {
 export const TaskForm: React.FC<Props> = ({ placeHolder, btnText, func, task }: Props) => {
 
     const inputRef = useRef<HTMLInputElement>(null!);
-
     const dispatch = useDispatch();
 
     const onHandleSubmit = (event: React.FormEvent) => {
