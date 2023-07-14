@@ -13,6 +13,12 @@
   color: var(--black);
   padding: 0 20px;
   scroll-behavior: smooth;
+  transition: 1s;
+  opacity: 0;
+}
+
+.app-show {
+  opacity: 1;
 }
 
 .app h1 {

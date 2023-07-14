@@ -4,9 +4,11 @@ import { Task, TaskForm } from './components';
 import { useTypedSelector } from './hooks/useTypedSelector';
 import { addTaskAction, updateTaskAction } from './store/reducers/taskListReducer';
 import { updateTaskEditorAction } from './store/reducers/taskEditorReducer';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const App: React.FC = () => {
+
+  const [visibility, setVisibility] = useState(false);
 
   const { tasks } = useTypedSelector(state => state.taskList);
   const taskEditor = useTypedSelector(state => state.taskEditor);
@@ -30,6 +32,10 @@ const App: React.FC = () => {
     }
     dispatch(updateTaskAction(task));
   }
+
+  useEffect(() => {
+    setVisibility(true);
+  }, []);
 
   useEffect(() => {
     if (tasks.length < 1 || !tasks.find(task => task.id === taskEditor.id)) {
@@ -56,7 +62,7 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="app">
+    <div className={`app ${visibility ? 'app-show' : null}`}>
       <div className="wrapper">
         <h1>Your Tasks</h1>
 
