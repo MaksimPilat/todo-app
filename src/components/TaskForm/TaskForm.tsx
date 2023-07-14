@@ -9,7 +9,7 @@ interface Props {
     placeHolder: string,
     btnText: string,
     func: (title: string) => void,
-    task?: { id: number, title: string }
+    task?: { id: number, title?: string }
 }
 
 export const TaskForm: React.FC<Props> = ({ placeHolder, btnText, func, task }: Props) => {
@@ -31,7 +31,7 @@ export const TaskForm: React.FC<Props> = ({ placeHolder, btnText, func, task }: 
     useEffect(() => {
         if (task) {
             if (!task.title) dispatch(updateTaskEditorAction());
-            inputRef.current.value = task.title;
+            inputRef.current.value = task.title || '';
             inputRef.current.focus();
         }
     }, [task]);

@@ -71,7 +71,7 @@ const App: React.FC = () => {
               placeHolder='Edit task'
               btnText='Update'
               func={editTask}
-              task={{ id: taskEditor.id, title: tasks.find(task => task.id === taskEditor.id)?.title || '' }}
+              task={{ id: taskEditor.id, title: tasks.find(task => task.id === taskEditor.id)?.title }}
             /> : null
           }
         </div>
