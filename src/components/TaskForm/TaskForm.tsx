@@ -23,6 +23,7 @@ export const TaskForm: React.FC<Props> = ({ placeHolder, btnText, func, task }: 
         func(inputRef.current.value);
         inputRef.current.value = '';
         if (task) {
+            dispatch(updateTaskAction({ id: task.id, isEditing: false }))
             dispatch(updateTaskEditorAction(task.id));
         }
     }

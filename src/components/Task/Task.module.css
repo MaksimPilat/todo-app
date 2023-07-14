@@ -93,3 +93,9 @@
     transform: translateX(7px);
     border: 2px solid var(--yellow);
 }
+
+@media screen and (max-width: 550px) {
+    .root {
+        line-height: 1.2;
+    }
+}
