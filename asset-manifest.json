@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/todo-app-NovoSoft/static/css/main.3f57dee5.css",
-    "main.js": "/todo-app-NovoSoft/static/js/main.0aa612bb.js",
+    "main.css": "/todo-app-NovoSoft/static/css/main.f3b79670.css",
+    "main.js": "/todo-app-NovoSoft/static/js/main.f844534e.js",
     "index.html": "/todo-app-NovoSoft/index.html",
-    "main.3f57dee5.css.map": "/todo-app-NovoSoft/static/css/main.3f57dee5.css.map",
-    "main.0aa612bb.js.map": "/todo-app-NovoSoft/static/js/main.0aa612bb.js.map"
+    "main.f3b79670.css.map": "/todo-app-NovoSoft/static/css/main.f3b79670.css.map",
+    "main.f844534e.js.map": "/todo-app-NovoSoft/static/js/main.f844534e.js.map"
   },
   "entrypoints": [
-    "static/css/main.3f57dee5.css",
-    "static/js/main.0aa612bb.js"
+    "static/css/main.f3b79670.css",
+    "static/js/main.f844534e.js"
   ]
 }
