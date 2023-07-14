@@ -9,8 +9,9 @@ export const taskEditorReducer = ((state = initialState, action: TaskEditorActio
     switch (action.type) {
 
         case TaskEditorActionTypes.UPDATE:
-            if (!action.payload) return { ...state, id: 0, isMounted: false }
-            if (state.id === action.payload) return { ...state, id: 0, isMounted: false }
+            if (action.payload === undefined || action.payload === state.id) {
+                return { ...state, id: 0, isMounted: false }
+            }
             return { ...state, id: action.payload, isMounted: true }
 
         default: return state;

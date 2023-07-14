@@ -16,7 +16,6 @@ export const taskListReducer = ((state = initialState, action: TaskListAction): 
             return { ...state, tasks: state.tasks.filter(task => task.id !== action.payload) }
 
         case TaskListActionTypes.UPDATE_TASK:
-
             return {
                 ...state, tasks: state.tasks.map(task => {
                     if (task.id === action.payload.id) {
@@ -25,7 +24,9 @@ export const taskListReducer = ((state = initialState, action: TaskListAction): 
                         const newIsCompleted = isCompleted !== undefined ? isCompleted : task.isCompleted;
                         const newIsEditing = isEditing !== undefined ? isEditing : task.isEditing;
                         return { ...task, title: newTitle, isCompleted: newIsCompleted, isEditing: newIsEditing }
-                    } return { ...task, isEditing: false };
+                    }
+                    if (action.payload.isEditing !== undefined) return { ...task, isEditing: false };
+                    return { ...task };
                 })
             }
 

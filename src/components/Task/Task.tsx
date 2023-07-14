@@ -19,27 +19,29 @@ export const Task: React.FC<Props> = ({ id, title, isCompleted, isEditing }: Pro
 
     const dispatch = useDispatch();
 
-    const changeTaskCompletion = (event: React.MouseEvent | React.FormEvent, id: number) => {
+    const changeTaskCompletion = (event: React.MouseEvent, id: number) => {
         event.stopPropagation();
         dispatch(updateTaskAction({ id: id, isCompleted: !isCompleted }));
-        console.log(isCompleted)
     }
 
     const editTask = (event: React.MouseEvent, id: number) => {
         event.stopPropagation();
         dispatch(updateTaskEditorAction(id));
+        dispatch(updateTaskAction({ id: id, isEditing: !isEditing }))
     }
 
-    const removeTask = (id: number) => {
+    const removeTask = (event: React.MouseEvent, id: number) => {
+        event.stopPropagation();
         dispatch(removeTaskAction(id));
     }
 
     useEffect(() => {
-        root.current.classList.toggle(styles.editTask);
+        if (isEditing) root.current.classList.add(styles.editTask);
+        else root.current.classList.remove(styles.editTask);
     }, [isEditing])
 
     return (
-        <div ref={root} onClick={event => { console.log('click'); changeTaskCompletion(event, id) }} className={styles.root}>
+        <div ref={root} onClick={event => changeTaskCompletion(event, id)} className={styles.root}>
             <span className={isCompleted ? styles.completeTitle : null}>
                 {title}
             </span>
@@ -59,7 +61,7 @@ export const Task: React.FC<Props> = ({ id, title, isCompleted, isEditing }: Pro
                     className={styles.btn}
                     size={24}
                     color='var(--red)'
-                    onClick={() => removeTask(id)} />
+                    onClick={event => removeTask(event, id)} />
             </div>
         </div>
     )

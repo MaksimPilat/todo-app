@@ -9,7 +9,7 @@ export enum TaskEditorActionTypes {
 
 interface UpdateAction {
     type: TaskEditorActionTypes.UPDATE,
-    payload: number
+    payload?: number
 }
 
 export type TaskEditorAction = UpdateAction

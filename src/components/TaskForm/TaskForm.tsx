@@ -8,10 +8,10 @@ interface Props {
     placeHolder: string,
     btnText: string,
     func: (title: string) => void,
-    value?: string
+    task?: { id: number, title: string }
 }
 
-export const TaskForm: React.FC<Props> = ({ placeHolder, btnText, func, value }: Props) => {
+export const TaskForm: React.FC<Props> = ({ placeHolder, btnText, func, task }: Props) => {
 
     const inputRef = useRef<HTMLInputElement>(null!);
 
@@ -21,13 +21,16 @@ export const TaskForm: React.FC<Props> = ({ placeHolder, btnText, func, value }:
         event.preventDefault();
         func(inputRef.current.value);
         inputRef.current.value = '';
-        if (value) dispatch(updateTaskEditorAction());
+        if (task) dispatch(updateTaskEditorAction(task.id));
     }
 
     useEffect(() => {
-        if (value) inputRef.current.value = value;
-        inputRef.current.focus();
-    }, [value]);
+        if (task) {
+            if (!task.title) dispatch(updateTaskEditorAction());
+            inputRef.current.value = task.title;
+            inputRef.current.focus();
+        }
+    }, [task]);
 
     return (
         <form
