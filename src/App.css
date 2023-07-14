@@ -13,11 +13,13 @@
   color: var(--black);
   padding: 0 20px;
   scroll-behavior: smooth;
-  transition: 1s;
+  transition: .8s;
+  transform: translateY(25px);
   opacity: 0;
 }
 
 .app-show {
+  transform: translateY(0px);
   opacity: 1;
 }
 
