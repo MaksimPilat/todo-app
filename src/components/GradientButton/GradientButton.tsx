@@ -1,5 +1,5 @@
-import { PropsWithChildren } from 'react';
 import styles from './GradientButton.module.css';
+import { PropsWithChildren } from 'react';
 
 export const GradientButton: React.FC<PropsWithChildren> = ({ children }: React.PropsWithChildren) => {
     return (

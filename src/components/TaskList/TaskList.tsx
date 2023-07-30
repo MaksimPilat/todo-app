@@ -2,7 +2,8 @@ import styles from './TaskList.module.css';
 import { Task } from '../Task/Task';
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
-import { updateTaskEditorAction } from '../../store/reducers/taskEditorReducer';
+import { updateTaskEditorAction } from '../../redux/reducers/taskEditorReducer';
+import { TaskState } from '../../redux/types'
 import { useEffect } from 'react';
 
 interface Props {
@@ -15,7 +16,7 @@ export const TaskList: React.FC<Props> = ({ editableTaskId }: Props) => {
     const { tasks } = useTypedSelector(state => state.taskList);
 
     useEffect(() => {
-        if (tasks.length < 1 || !tasks.find(task => task.id === editableTaskId)) {
+        if (tasks.length < 1 || !tasks.find((task: TaskState) => task.id === editableTaskId)) {
             dispatch(updateTaskEditorAction());
         }
     }, [tasks]);
@@ -23,7 +24,7 @@ export const TaskList: React.FC<Props> = ({ editableTaskId }: Props) => {
     if (tasks.length > 0) {
         return (
             <div className={styles.root}>
-                {tasks.map(item =>
+                {tasks.map((item: TaskState) =>
                     <Task
                         key={item.id}
                         id={item.id}

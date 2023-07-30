@@ -2,8 +2,8 @@ import styles from './Task.module.css';
 import { MdDelete } from 'react-icons/md';
 import { AiFillEdit } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
-import { removeTaskAction, updateTaskAction } from '../../store/reducers/taskListReducer';
-import { updateTaskEditorAction } from '../../store/reducers/taskEditorReducer';
+import { removeTaskAction, updateTaskAction } from '../../redux/reducers/taskListReducer';
+import { updateTaskEditorAction } from '../../redux/reducers/taskEditorReducer';
 import { useEffect, useRef } from 'react';
 
 interface Props {

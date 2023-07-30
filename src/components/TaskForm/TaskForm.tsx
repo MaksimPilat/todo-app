@@ -1,8 +1,8 @@
 import styles from './TaskForm.module.css';
 import { GradientButton } from '..';
 import { useDispatch } from 'react-redux';
-import { updateTaskEditorAction } from '../../store/reducers/taskEditorReducer';
-import { updateTaskAction } from '../../store/reducers/taskListReducer';
+import { updateTaskEditorAction } from '../../redux/reducers/taskEditorReducer';
+import { updateTaskAction } from '../../redux/reducers/taskListReducer';
 import { useEffect, useRef } from 'react';
 
 interface Props {
