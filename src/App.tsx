@@ -1,9 +1,10 @@
 import './App.css';
 import { TaskForm, TaskList } from './components';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTypedSelector } from './hooks/useTypedSelector';
-import { addTaskAction, updateTaskAction } from './store/reducers/taskListReducer';
-import { useEffect, useState } from 'react';
+import { addTaskAction, updateTaskAction } from './redux/reducers/taskListReducer';
+import { TaskState } from './redux/types'
 
 const App: React.FC = () => {
 
@@ -54,7 +55,7 @@ const App: React.FC = () => {
               func={editTask}
               task={{
                 id: taskEditor.id,
-                title: tasks.find(task => task.id === taskEditor.id)?.title
+                title: tasks.find((task: TaskState) => task.id === taskEditor.id)?.title
               }}
             /> : null
           }

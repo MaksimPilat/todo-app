@@ -1,5 +1,5 @@
-import { TaskState } from "../../types/task";
-import { TaskListState, TaskListAction, TaskListActionTypes } from "../../types/taskList";
+import { TaskState } from "../types/task";
+import { TaskListState, TaskListAction, TaskListActionTypes } from "../types";
 
 const initialState: TaskListState = {
     tasks: []

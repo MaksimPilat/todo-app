@@ -1,4 +1,4 @@
-import { TaskEditorState, TaskEditorAction, TaskEditorActionTypes } from '../../types/taskEditor';
+import { TaskEditorState, TaskEditorAction, TaskEditorActionTypes } from '../types';
 
 const initialState: TaskEditorState = {
     id: 0,
